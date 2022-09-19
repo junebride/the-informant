@@ -1,6 +1,4 @@
-const fs = require("fs");
 const nodemailer = require("nodemailer");
-const logger = require("./the-logger/the_logger").init();
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -13,8 +11,10 @@ class Informant {
 		this.#mailOption.subject = mailOption.subject || this.#mailOption.subject;
 		this.#transporter = nodemailer.createTransport({
 			service: "gmail",
-			user: process.env.EMAIL,
-			pass: process.env.PASS,
+			auth: {
+				user: process.env.EMAIL,
+				pass: process.env.PASS
+			}
 		});
 	}
 
@@ -23,7 +23,7 @@ class Informant {
 		mailOption["text"] = message;
 
 		this.#transporter.sendMail(mailOption, function (error, info) {
-			if (error) logger.error(notify, error);
+			if (error) console.log(error);
 		});
 	}
 }

@@ -1,11 +1,7 @@
-const logger = require("./the-informant").initLogger({ to: "june.yeo92@gmail.com" });
+const informant = require("./the_informant").init({to: "june.yeo92@gmail.com", subject:"this is a test email"});
 
 function main() {
-	try {
-		throw "This is a test error";
-	} catch (ex) {
-		logger.error(main, ex);
-	}
+	informant.notify("This is a test email");
 }
 
 main();
