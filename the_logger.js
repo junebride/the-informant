@@ -11,10 +11,6 @@ class Logger {
 		if (!fs.existsSync(this.#dir)) fs.mkdirSync(this.#dir);
 	}
 
-	#isNullOrEmpty(value) {
-		return value == null || value === "";
-	}
-
 	error(callerFunction, errorMessage, optionalParameter = []) {
 		let functionName = callerFunction.name;
 		let datetime = new Date();
