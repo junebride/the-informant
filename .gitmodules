@@ -1,0 +1,3 @@
+[submodule "the-logger"]
+	path = the-logger
+	url = https://github.com/junebride/the-logger.git
