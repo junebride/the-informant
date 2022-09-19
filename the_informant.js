@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const logger = require("./plugins/the-logger/the_logger").init({ to: "june.yeo92@gmail.com" });
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -18,13 +19,15 @@ class Informant {
 		});
 	}
 
-	notify(message) {
+	async notify(message) {
 		let mailOption = this.#mailOption;
 		mailOption["text"] = message;
 
-		this.#transporter.sendMail(mailOption, function (error, info) {
-			if (error) console.log(error);
-		});
+		try {
+			await this.#transporter.sendMail(mailOption);
+		} catch (err) {
+			logger.error(this.notify, err);
+		}
 	}
 }
 
