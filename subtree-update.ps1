@@ -1,0 +1,1 @@
+git subtree pull --prefix=plugins/the-informant the-informant main --squash 
