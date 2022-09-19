@@ -1,0 +1,1 @@
+git subtree pull --prefix=plugins/the-logger the-logger main --squash 
